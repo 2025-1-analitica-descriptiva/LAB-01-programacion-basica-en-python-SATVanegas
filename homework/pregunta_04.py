@@ -4,7 +4,7 @@ datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
-
+import csv
 
 def pregunta_04():
     """
@@ -26,3 +26,20 @@ def pregunta_04():
      ('12', 3)]
 
     """
+
+    sumas = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for linea in file:
+            columnas = linea.split("\t")
+            fecha = columnas[2]  
+            mes = fecha.split("-")[1] 
+            
+            if mes in sumas:
+                sumas[mes] += 1
+            else:
+                sumas[mes] = 1
+
+    return sorted(sumas.items())
+
+pregunta_04()

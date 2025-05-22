@@ -25,3 +25,19 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    asociados = {}
+    with open("files/input/data.csv", 'r') as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split('\t') 
+            letra = columnas[0] 
+            valor_columna_2 = int(columnas[1]) 
+            
+            if valor_columna_2 in asociados:
+                asociados[valor_columna_2].append(letra)
+            else:
+                asociados[valor_columna_2] = [letra]
+
+    resultado = sorted(asociados.items())
+    return resultado
+
+pregunta_07()
